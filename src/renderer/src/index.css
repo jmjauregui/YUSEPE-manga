@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-neutral-100 text-neutral-900 antialiased;
+}
+
+/* Fuente con aire manuscrito para los globos de diálogo (con alternativas multiplataforma) */
+.balloon-font {
+  font-family: 'Chalkboard SE', 'Segoe Print', 'Comic Sans MS', 'Comic Neue', cursive;
+}
+
+/* Scrollbars discretas, acordes al estilo sobrio de la app */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: theme(colors.neutral.300);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: theme(colors.neutral.400);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
