@@ -1,113 +1,148 @@
-# YUSEPE manga
+<p align="center">
+  <img src="docs/imgs/UI%20creando%20una%20hoja%20del%20manga%20con%20vignetas.png" alt="YUSEPE manga editor" width="720" />
+</p>
 
-**Herramienta de escritorio para crear y gestionar proyectos de manga sin necesidad de saber dibujar.**
+<h1 align="center">YUSEPE manga</h1>
+<p align="center"><strong>Crea manga sin saber dibujar.</strong></p>
 
-YUSEPE manga es una aplicación Electron que resuelve la maquetación, organización y gestión de proyectos de manga para personas con capacidad creativa para contar historias pero sin formación en ilustración. Todo con valores por defecto sensatos, guardado automático y una interfaz sobria en grises neutros con acento índigo.
+<p align="center">
+  <a href="https://jmjauregui.github.io/YUSEPE-manga"><strong>🌐 Sitio web</strong></a> ·
+  <a href="#-instalaci%C3%B3n"><strong>📦 Instalar</strong></a> ·
+  <a href="#-caracter%C3%ADsticas"><strong>✨ Features</strong></a> ·
+  <a href="#-formato-de-proyecto"><strong>📁 .ymanga</strong></a>
+</p>
 
-## Características
+<p align="center">
+  <img src="https://img.shields.io/badge/Electron-33-47848F?logo=electron&logoColor=white" alt="Electron" />
+  <img src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind-v4-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="License" />
+  <img src="https://img.shields.io/badge/version-0.4-indigo" alt="Version" />
+</p>
 
-### Gestión de proyecto
-- **Proyectos recientes** con detección de archivos eliminados del disco
-- **Asistente de creación**: nombre, presets reales (B5 Tankōbon, A5, A4, US Comic), márgenes configurables, carpeta obligatoria
-- **Guardado automático** continuo (nunca pierdes trabajo)
-- Persistencia en `.ymanga` (JSON) + carpeta `assets/` con imágenes
+---
 
-### Editor de páginas
-- **Páginas**: añadir, eliminar, reordenar; zoom y ajuste a ventana
-- **Imágenes**: importar por diálogo o drag & drop, mover y redimensionar (proporción bloqueada), ajuste automático a márgenes o viñeta
+YUSEPE manga es una **aplicación de escritorio** que resuelve la maquetación, organización y gestión de proyectos de manga para personas con **capacidad creativa para contar historias pero sin formación en dibujo**.
 
-### Viñetas (paneles)
-- **Dibujo por marquee** con vista previa punteada
-- **División** en columnas/filas con gutter automático de 3 mm
-- **Recorte poligonal** del contenido (clip-path)
-- **Modo deformar**: 4 vértices libres con guardarraíl convexo (sin aristas cruzadas)
-- **Fondo de trama**: aplica cualquier SVG de `assets/tramas_vignetas/` como patrón de screentone repetitivo (12 tramas built-in de Adobe Illustrator)
-- **Fondo con IA**: generación de imágenes mediante Pollinations.ai con selector de estilo, color, ambiente, iluminación y nivel de detalle
+> *"Mi idea era crear una plataforma que me permita diseñar mangas. Y lo logramos."*
 
-### Globos de diálogo
-- **4 tipos SVG**: diálogo, pensamiento (borde punteado + burbujitas), grito (estrella de picos), cartela (narración)
-- **Cola orientable** con asa circular arrastrable
-- **Texto editable** con doble clic, tamaño ajustable (A−/A+)
-- **Selector de fuente**: 9 tipografías (7 japonesas de Google Fonts: Noto Sans JP, Rampart One, Yomogi, Reggae One, Mochiy Pop One, Potta One, Yuji Mai + Manuscrita + Impacto)
-- **Sombra configurable** con drop-shadow SVG
-- **Marcos para cartelas**: sólido, redondeado, doble línea, sin marco
+---
 
-### Dibujo y entintado
-- **Pluma a mano alzada**: 3 tintas × 3 grosores, trazos vectoriales en milímetros
-- **Borrador**: elimina trazos y timbres al pasar
-- **Timbres de trama** (screentone): 8 patrones (puntos, puntos densos, líneas diagonal, cruzado, vertical, horizontal, estrellas, ladrillos), tamaño continuo por slider 5–40 mm
+## 🌐 Sitio web
 
-### Onomatopeyas (SFX)
-- **3 estilos**: Impacto (con skew), Contorno (trazo grueso invertido), Pincel (manuscrito)
-- **Rotación ±15°**, 3 colores, edición con doble clic, selector de fuente
+La landing page completa está en:
 
-### Constructor de historia
-- **Premisa** del proyecto
-- **Capítulos** ordenables con título y resumen
-- **Escenas** por capítulo vinculables a páginas del manga
-- Navegación integrada editor ↔ historia con autosave compartido
+### 👉 [jmjauregui.github.io/YUSEPE-manga](https://jmjauregui.github.io/YUSEPE-manga)
 
-### Constructor de personajes
-- **Cara paramétrica**: 3 formas, 5 tonos de piel, 6 estilos de cabello, 7 colores, 3 tipos de ojos, 5 expresiones
-- **Guardado con nombre**; colocación en viñetas con copia independiente de la configuración
+Con galería de capturas, features, stack tecnológico y guía de instalación.
 
-### Constructor de escenarios
-- **14 prefabs vectoriales** estilo line-art manga (árboles, pinos, arbustos, rocas, nubes, montañas, sol, edificios, torres, casas, escaleras, farolas, vallas)
-- **Elementos personalizados** importables a la biblioteca
+---
 
-### Generación de fondos con IA
-- **Integración con Pollinations.ai** mediante servicio encapsulado
-- **27 estilos** en 5 categorías: artístico, color, ambiente, iluminación, detalle
-- **3 imágenes por generación** con seeds independientes (Usar / Regenerar / Descargar)
-- **Biblioteca de imágenes** persistente con búsqueda por prompt
-- **API key** configurable vía `.env` (`APIKEY_pollinations`)
-
-## Stack técnico
-
-| Componente | Tecnología |
-|---|---|
-| Escritorio | Electron 33 |
-| Build | electron-vite 2 |
-| Frontend | React 18 + TypeScript |
-| Estilos | Tailwind CSS v4 |
-| Iconos | lucide-react |
-| Protocolo de assets | `ymg://` (custom protocol) |
-| Fuentes | Google Fonts CDN |
-| IA | Pollinations.ai |
-
-## Instalación
+## 📦 Instalación
 
 ```bash
-# Usar Node 20 (obligatorio)
+# Requiere Node 20 (obligatorio)
 nvm use 20
 
-# Instalar dependencias
+git clone https://github.com/jmjauregui/YUSEPE-manga.git
+cd YUSEPE-manga
+
 npm install
-
-# Desarrollo con HMR
-npm run dev
-
-# Build de producción
-npm run build
-
-# Verificación de tipos
-npm run typecheck
+npm run dev        # desarrollo con HMR
+npm run build      # producción
+npm run typecheck  # verificación de tipos
 ```
 
-## Formato de proyecto (`.ymanga`)
+| Comando | Qué hace |
+|---|---|
+| `npm run dev` | Arranca electron-vite con HMR en el renderer |
+| `npm run build` | Build de producción en `out/` |
+| `npm run typecheck` | `tsc --noEmit` para verificar tipos |
 
-Cada proyecto es una carpeta con:
+---
+
+## ✨ Características
+
+### 🎯 Gestión de proyecto
+- **Proyectos recientes** con detección de archivos eliminados
+- **Asistente de creación**: nombre, presets reales (B5 Tankōbon, A5, A4, US Comic), márgenes
+- **Guardado automático** (cada 600 ms). Nunca perdés trabajo.
+- Formato `.ymanga` portable + carpeta `assets/`
+
+### ▦ Viñetas poligonales
+- Dibujo por **marquee** con vista previa punteada
+- **División** en columnas/filas con gutter automático de 3 mm
+- **Modo deformar**: 4 vértices libres con guardarraíl convexo
+- **Recorte poligonal** del contenido (clip-path)
+- **Fondo de trama**: screentone SVG con 12 tramas built-in de Illustrator
+
+### 💬 Globos de diálogo
+- **4 tipos SVG** (diálogo, pensamiento, grito, cartela)
+- **Cola orientable** con asa arrastrable
+- **9 fuentes** japonesas (Noto Sans JP, Rampart One, Yomogi…) cargadas de Google Fonts
+- **Sombra configurable** con SVG drop-shadow
+- **Marcos** para cartelas: sólido, redondeado, doble línea, sin marco
+
+### ✨ Fondos con IA (Pollinations.ai)
+- **27 estilos** en 5 categorías (artístico, color, ambiente, iluminación, detalle)
+- **3 imágenes** por generación con seeds distintos
+- **Biblioteca** persistente con búsqueda por prompt
+- API key configurable vía `.env`
+
+<p align="center">
+  <img src="docs/imgs/UI%20creando%20una%20imagen%20con%20IA.png" alt="Generación de fondos con IA" width="600" />
+</p>
+
+### ✏️ Dibujo y screentones
+- **Pluma**: 3 tintas × 3 grosores, trazos vectoriales en mm
+- **Borrador**: elimina trazos y timbres
+- **Timbres**: 8 patrones (puntos, líneas, cruzado, vertical, estrellas, ladrillos…) con slider 5–40 mm
+
+### 💥 Onomatopeyas (SFX)
+- 3 estilos (Impacto, Contorno, Pincel) · rotación ±15° · 3 colores · selector de fuente
+
+### 👤 Constructor de personajes
+- Cara paramétrica: 3 formas, 5 pieles, 6 cabellos, 7 colores, 3 ojos, 5 expresiones
+- Guardado con nombre, copia independiente al colocar
+
+### 📖 Constructor de historia
+- Premisa, capítulos ordenables y escenas vinculadas a páginas
+- Navegación fluida editor ↔ historia con autosave compartido
+
+<p align="center">
+  <img src="docs/imgs/UI%20creando%20historia%20del%20comic%20-%20manga.png" alt="Constructor de historia" width="600" />
+</p>
+
+---
+
+## 🧱 Stack tecnológico
+
+| Capa | Tecnología |
+|---|---|
+| **Desktop** | Electron 33 |
+| **Build** | electron-vite 2 |
+| **UI** | React 18 + TypeScript |
+| **Estilos** | Tailwind CSS v4 (plugin `@tailwindcss/vite`) |
+| **Iconos** | lucide-react (sin SVGs a mano) |
+| **Protocolo** | `ymg://` (custom protocol, reemplaza `file://`) |
+| **IA** | Pollinations.ai (servicio encapsulado `AIImageService`) |
+| **Fuentes** | Google Fonts CDN (7 japonesas + sistema) |
+| **Formato** | `.ymanga` (JSON, unidades en mm) |
+
+---
+
+## 📁 Formato de proyecto
 
 ```
 MiProyecto/
-├── project.ymanga     # JSON con la definición completa
-└── assets/            # imágenes, tramas y recursos
-    └── tramas_vignetas/  # tramas de screentone SVG
+├── project.ymanga     ← JSON con todo el proyecto
+└── assets/
+    ├── imagen.png       ← imágenes importadas
+    └── tramas_vignetas/ ← SVGs de screentone
 ```
 
-Todas las unidades están en **milímetros** (página, márgenes, posición de imágenes, viñetas, globos y fuentes). El editor convierte a píxeles con `PX_PER_MM × zoom` (PX_PER_MM = 3).
-
-Ejemplo mínimo de `project.ymanga`:
+Todo en **milímetros** (página, márgenes, imágenes, viñetas, globos, fuentes). El editor convierte a px con `PX_PER_MM × zoom`.
 
 ```json
 {
@@ -116,21 +151,14 @@ Ejemplo mínimo de `project.ymanga`:
   "page": { "presetId": "b5", "width": 182, "height": 257,
     "margins": { "top": 20, "right": 15, "bottom": 20, "left": 15 } },
   "pages": [{
-    "id": "uuid",
-    "images": [],
-    "panels": [
-      { "id": "uuid", "x": 15, "y": 20, "w": 152, "h": 100,
-        "corners": [{ "x": 0, "y": 0 }, { "x": 152, "y": 0 },
-                    { "x": 152, "y": 100 }, { "x": 0, "y": 100 }],
-        "images": [] }
-    ],
-    "balloons": [
-      { "id": "uuid", "kind": "speech", "x": 20, "y": 25, "w": 46, "h": 30,
-        "text": "¡Llegamos!", "fontSize": 4.2, "tail": { "x": 32, "y": 68 } }
-    ],
-    "strokes": [],
-    "stamps": [],
-    "sfx": []
+    "panels": [{
+      "x": 15, "y": 20, "w": 152, "h": 100,
+      "corners": [{ "x":0,"y":0 },{ "x":152,"y":0 },{ "x":152,"y":100 },{ "x":0,"y":100 }]
+    }],
+    "balloons": [{
+      "kind": "speech", "text": "¡Llegamos!",
+      "fontSize": 4.2, "tail": { "x": 32, "y": 68 }
+    }]
   }],
   "story": { "premise": "", "chapters": [] },
   "characters": [],
@@ -139,66 +167,46 @@ Ejemplo mínimo de `project.ymanga`:
 }
 ```
 
-Los proyectos antiguos se normalizan automáticamente al abrir (campos faltantes reciben valores por defecto).
+---
 
-## Estructura del código
+## 🏗️ Estructura del código
 
 ```
 src/
-├── main/index.ts          Proceso principal: ventana, IPC, archivos, ymg://
-├── preload/index.ts       contextBridge: expone window.yusepe
-├── shared/types.ts        Tipos compartidos (única fuente de verdad)
+├── main/index.ts          Electron: ventana, IPC, archivos, ymg://
+├── preload/index.ts       contextBridge → window.yusepe
+├── shared/types.ts        Tipos (única fuente de verdad)
 └── renderer/src/
-    ├── App.tsx            Navegación (overview / create / editor / story)
-    ├── lib/
-    │   ├── units.ts       Constantes, geometría, presets, fuentes
-    │   ├── useDrag.ts     Hook de arrastre con listeners en window
-    │   ├── prefabs.tsx    Arte SVG de escenarios prefabricados
-    │   └── aiImageService.ts  Servicio encapsulado de Pollinations.ai
-    ├── components/
-    │   ├── PageCanvas.tsx        Lienzo: capas + herramientas + drop
-    │   ├── PagesPanel.tsx        Miniaturas de páginas
-    │   ├── PanelItem.tsx         Viñeta poligonal (clip, deformar)
-    │   ├── BalloonItem.tsx       Globo (SVG, cola, sombra, texto)
-    │   ├── SfxItem.tsx           Onomatopeya (estilos, rotación)
-    │   ├── PlacedImageItem.tsx   Elemento colocado (mover/redimensionar)
-    │   ├── CharacterFace.tsx     Retrato paramétrico SVG
-    │   ├── AIBackgroundModal.tsx Fondos IA + biblioteca
-    │   ├── ToolStrip.tsx         Barra vertical de herramientas
-    │   └── Modal.tsx             Diálogo de confirmación
-    └── screens/
-        ├── Overview.tsx       Proyectos recientes
-        ├── CreateProject.tsx  Asistente de creación
-        ├── Editor.tsx         Editor principal (orquesta todo)
-        └── StoryBuilder.tsx   Constructor de historia
+    ├── App.tsx            Navegación
+    ├── lib/               Constantes, hooks, prefabs, servicio IA
+    ├── components/        PageCanvas, PanelItem, BalloonItem, SfxItem…
+    └── screens/           Overview, CreateProject, Editor, StoryBuilder
 ```
 
-## Principios de diseño
+---
 
-- **Soluciones reales para no ilustradores**: nada de jerga profesional ni flujos complejos. Presets de formato reales, márgenes preconfigurados, ajuste automático de imágenes.
-- **Guardado automático**: el usuario nunca debe preocuparse por perder trabajo.
-- **Estilo sobrio**: interfaz limpia en grises neutros con un único acento índigo.
-- **Unidades en milímetros**: todo el documento usa mm; la conversión a píxeles es interna.
-- **Sin acceso a Node en el renderer**: toda comunicación con el sistema de archivos pasa por IPC (`window.yusepe`) y el protocolo `ymg://`.
+## 🎨 Principios de diseño
 
-## Desarrollo
+- **Para no ilustradores** — nada de jerga, todo con defaults sensatos
+- **Guardado automático** — nunca perdés trabajo
+- **Estilo sobrio** — neutral grays + acento indigo
+- **mm internos** — el usuario piensa en milímetros, igual que la impresión
+- **IPC seguro** — el renderer nunca toca Node ni `file://`
 
-```bash
-nvm use 20          # obligatorio antes de cualquier comando
-npm install
-npm run dev         # HMR en renderer, auto-reload en main
-npm run typecheck   # tsc --noEmit
-npm run build       # producción en out/
-```
+---
 
-No hay tests automatizados todavía. La verificación actual es `typecheck` + `build`.
+## 🤖 Configurar IA
 
-## API Key de IA
-
-Para usar la generación de fondos con IA, crea un archivo `.env` en la raíz del proyecto:
+Creá un `.env` en la raíz:
 
 ```
 APIKEY_pollinations = tu_api_key
 ```
 
-El proceso main la carga automáticamente al arrancar y el servicio de IA la inyecta en cada petición a Pollinations.
+El proceso main lo carga al arrancar. El servicio `AIImageService` lo inyecta en cada request a Pollinations.
+
+---
+
+<p align="center">
+  <sub>Made with ☕ for storytellers who can't draw.</sub>
+</p>
