@@ -5,135 +5,289 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YUSEPE manga — Crea manga sin saber dibujar</title>
   <meta name="description" content="Herramienta de escritorio gratuita y open-source para crear y gestionar proyectos de manga. Para guionistas, no ilustradores." />
+  <meta name="theme-color" content="#0f0d1e" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { theme: { extend: { colors: { ink: '#141414' } } } }</script>
+  <script>tailwind.config = { theme: { extend: { colors: { ink: '#141414', indigo: { 950: '#1e1b4b' } }, fontFamily: { manga: ["'Rampart One'", 'cursive'], jp: ["'Noto Sans JP'", 'sans-serif'] } } } }</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Rampart+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Rampart+One&family=Mochiy+Pop+One&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Noto Sans JP', system-ui, sans-serif; }
-    .hero-gradient { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4338ca 100%); }
+    * { scroll-behavior: smooth }
+    body { font-family: 'Noto Sans JP', system-ui, sans-serif }
+    .bg-ink { background-color: #0f0d1e }
+    .bg-panel { background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%) }
+    .text-gradient { background: linear-gradient(135deg, #c4b5fd, #818cf8, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text }
+    .hero-pattern { background-image: radial-gradient(circle at 25% 25%, rgba(99,102,241,0.08) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(139,92,246,0.06) 0%, transparent 50%) }
+    .card-hover { transition: all 0.3s ease }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15) }
+    .screenshot-frame { border: 3px solid #e5e7eb; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08) }
+    .speed-lines { background: repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(99,102,241,0.04) 3px, rgba(99,102,241,0.04) 6px) }
   </style>
 </head>
 <body class="bg-neutral-50 text-neutral-900 antialiased">
 
 <!-- Nav -->
-<nav class="border-b border-neutral-200 bg-white/80 backdrop-blur sticky top-0 z-50">
-  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-    <div class="flex items-center gap-2.5">
-      <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-sm font-bold">Y</div>
-      <span class="font-semibold">YUSEPE manga</span>
+<nav class="fixed top-0 z-50 w-full border-b border-white/5 bg-ink/90 backdrop-blur-md">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+    <div class="flex items-center gap-3">
+      <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white text-sm font-black shadow-lg shadow-indigo-500/25">Y</div>
+      <span class="text-white font-bold tracking-wide">YUSEPE<span class="text-indigo-400">manga</span></span>
     </div>
-    <div class="flex items-center gap-4 text-sm">
-      <a href="#features" class="text-neutral-500 hover:text-indigo-600 transition">Características</a>
-      <a href="#install" class="text-neutral-500 hover:text-indigo-600 transition">Instalar</a>
-      <a href="https://github.com/jmjauregui/YUSEPE-manga" class="rounded-lg bg-neutral-900 px-4 py-2 text-white hover:bg-neutral-800 transition text-sm font-medium">GitHub</a>
+    <div class="flex items-center gap-5 text-sm text-neutral-300">
+      <a href="#screenshots" class="hover:text-white transition">Capturas</a>
+      <a href="#features" class="hover:text-white transition">Features</a>
+      <a href="#install" class="hover:text-white transition">Instalar</a>
+      <a href="https://github.com/jmjauregui/YUSEPE-manga" class="rounded-lg bg-indigo-600 px-5 py-2.5 text-white font-medium hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/30">GitHub</a>
     </div>
   </div>
 </nav>
 
 <!-- Hero -->
-<header class="hero-gradient text-white">
-  <div class="mx-auto max-w-4xl px-6 py-24 text-center">
-    <h1 class="text-5xl font-bold tracking-tight sm:text-6xl">
-      Crea manga <span class="text-indigo-300">sin saber dibujar</span>
-    </h1>
-    <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-indigo-100">
-      YUSEPE manga es una herramienta de escritorio gratuita que te permite maquetar,
-      componer y gestionar todas las páginas de tu manga — escribí tu historia,
-      componé viñetas, añadí personajes y globos de diálogo, generá fondos con IA
-      y prepará tu obra para imprimir. Sin formación en dibujo. Sin fricción.
-    </p>
-    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-      <a href="#install" class="rounded-xl bg-white px-8 py-3.5 text-indigo-700 font-semibold shadow-lg hover:bg-indigo-50 transition">Descargar</a>
-      <a href="#features" class="rounded-xl border-2 border-white/30 px-8 py-3.5 text-white font-semibold hover:bg-white/10 transition">Ver más</a>
+<header class="bg-ink hero-pattern relative overflow-hidden pt-28 pb-32">
+  <div class="absolute inset-0 opacity-[0.03] speed-lines"></div>
+  <div class="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-indigo-600/10 blur-3xl"></div>
+  <div class="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-violet-600/10 blur-3xl"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-300">
+          <span class="h-2 w-2 rounded-full bg-indigo-400 animate-pulse"></span>
+          Open Source · v0.4
+        </div>
+        <h1 class="text-5xl font-black leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+          Tu manga.<br><span class="text-gradient">Tu historia.</span><br>Sin dibujar.
+        </h1>
+        <p class="mt-6 max-w-lg text-lg leading-relaxed text-neutral-400">
+          La primera herramienta de escritorio pensada para <strong class="text-white">guionistas</strong> que quieren crear manga sin formación en dibujo. Viñetas poligonales, globos de diálogo, personajes paramétricos, fondos con IA y constructor de historia. Todo integrado.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="#install" class="rounded-xl bg-indigo-600 px-8 py-4 text-white font-bold shadow-xl shadow-indigo-600/30 hover:bg-indigo-500 transition text-lg">Empezar ahora</a>
+          <a href="#screenshots" class="rounded-xl border-2 border-white/20 px-8 py-4 text-white font-bold hover:bg-white/10 transition text-lg">Ver en acción</a>
+        </div>
+        <div class="mt-8 flex items-center gap-6 text-sm text-neutral-500">
+          <span class="flex items-center gap-1.5"><span class="text-indigo-400 font-bold">macOS</span></span>
+          <span class="flex items-center gap-1.5"><span class="text-indigo-400 font-bold">Windows</span></span>
+          <span class="flex items-center gap-1.5"><span class="text-indigo-400 font-bold">Linux</span></span>
+        </div>
+      </div>
+      <div class="hidden lg:block">
+        <div class="screenshot-frame rotate-1 shadow-2xl shadow-indigo-500/10">
+          <img src="imgs/UI%20creando%20una%20hoja%20del%20manga%20con%20vignetas.png" alt="Editor de manga YUSEPE" class="w-full" loading="lazy" />
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
-<!-- Features -->
-<section id="features" class="py-24">
-  <div class="mx-auto max-w-6xl px-6">
-    <h2 class="text-center text-3xl font-bold">Todo lo que necesitás para tu manga</h2>
-    <p class="mx-auto mt-4 max-w-xl text-center text-neutral-500">Desde la primera viñeta hasta el capítulo final, sin salir de la app.</p>
+<!-- Screenshots Gallery -->
+<section id="screenshots" class="bg-panel border-y border-neutral-200 py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-500">Galería</span>
+      <h2 class="mt-3 text-4xl font-black text-ink">Así se ve en acción</h2>
+      <p class="mx-auto mt-4 max-w-xl text-neutral-500">Cada pantalla está diseñada para que te concentres en tu historia, no en la herramienta.</p>
+    </div>
 
-    <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 text-lg">▦</div>
-        <h3 class="mt-4 font-semibold">Viñetas poligonales</h3>
-        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Dibujá viñetas arrastrando, dividilas en columnas o deformá sus esquinas libremente. Guardarraíl convexo. Clip automático del contenido.</p>
+    <div class="mt-16 grid gap-8 lg:grid-cols-2">
+      <!-- Editor -->
+      <div class="group card-hover rounded-2xl bg-white p-3 shadow-sm">
+        <div class="screenshot-frame">
+          <img src="imgs/UI%20creando%20una%20hoja%20del%20manga%20con%20vignetas.png" alt="Editor con viñetas y globos" class="w-full" loading="lazy" />
+        </div>
+        <div class="mt-4 px-2 pb-2">
+          <h3 class="text-lg font-bold">Editor de páginas</h3>
+          <p class="mt-1 text-sm leading-relaxed text-neutral-500">Viñetas deformables, globos de diálogo SVG, onomatopeyas, timbres de screentone, imágenes y dibujo a mano alzada.</p>
+        </div>
       </div>
-      <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 text-lg">💬</div>
-        <h3 class="mt-4 font-semibold">Globos de diálogo</h3>
-        <p class="mt-2 text-sm leading-relaxed text-neutral-500">4 tipos (diálogo, pensamiento, grito, cartela), cola orientable, 9 fuentes japonesas, sombra configurable y marcos para cartelas.</p>
+
+      <!-- AI -->
+      <div class="group card-hover rounded-2xl bg-white p-3 shadow-sm">
+        <div class="screenshot-frame">
+          <img src="imgs/UI%20creando%20una%20imagen%20con%20IA.png" alt="Generación de fondos con IA" class="w-full" loading="lazy" />
+        </div>
+        <div class="mt-4 px-2 pb-2">
+          <h3 class="text-lg font-bold">Fondos con inteligencia artificial</h3>
+          <p class="mt-1 text-sm leading-relaxed text-neutral-500">27 estilos combinables, 3 imágenes por generación, biblioteca reutilizable.</p>
+        </div>
       </div>
-      <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 text-lg">✨</div>
-        <h3 class="mt-4 font-semibold">Fondos con IA</h3>
-        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Generá fondos para tus viñetas con Pollinations.ai. 27 estilos, 3 variantes por prompt. Biblioteca reutilizable.</p>
+
+      <!-- Story -->
+      <div class="group card-hover rounded-2xl bg-white p-3 shadow-sm">
+        <div class="screenshot-frame">
+          <img src="imgs/UI%20creando%20historia%20del%20comic%20-%20manga.png" alt="Constructor de historia" class="w-full" loading="lazy" />
+        </div>
+        <div class="mt-4 px-2 pb-2">
+          <h3 class="text-lg font-bold">Constructor de historia</h3>
+          <p class="mt-1 text-sm leading-relaxed text-neutral-500">Premisa, capítulos y escenas vinculadas a páginas del manga.</p>
+        </div>
       </div>
-      <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 text-lg">✏️</div>
-        <h3 class="mt-4 font-semibold">Dibujo a mano alzada</h3>
-        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Pluma con 3 tintas × 3 grosores, borrador, y 8 timbres de trama (screentone) con tamaño ajustable por slider.</p>
+
+      <!-- Library -->
+      <div class="group card-hover rounded-2xl bg-white p-3 shadow-sm">
+        <div class="screenshot-frame">
+          <img src="imgs/UI%20biblioteca%20de%20contenido%20generado%20con%20IA.png" alt="Biblioteca de imágenes IA" class="w-full" loading="lazy" />
+        </div>
+        <div class="mt-4 px-2 pb-2">
+          <h3 class="text-lg font-bold">Biblioteca de contenido IA</h3>
+          <p class="mt-1 text-sm leading-relaxed text-neutral-500">Todas tus imágenes generadas, accesibles desde el editor o la barra de herramientas.</p>
+        </div>
       </div>
-      <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 text-lg">👤</div>
-        <h3 class="mt-4 font-semibold">Constructor de personajes</h3>
-        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Cara, ojos, expresión, cabello y piel paramétricos. Guardalos con nombre y colocalos en tus viñetas.</p>
-      </div>
-      <div class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 text-lg">📖</div>
-        <h3 class="mt-4 font-semibold">Constructor de historia</h3>
-        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Premisa, capítulos y escenas vinculadas a páginas. Estructurá toda la trama dentro de la misma app.</p>
+
+      <!-- Cover -->
+      <div class="group card-hover rounded-2xl bg-white p-3 shadow-sm lg:col-span-2">
+        <div class="screenshot-frame">
+          <img src="imgs/Creando%20una%20portada%20para%20manga.png" alt="Portada de manga" class="w-full" loading="lazy" />
+        </div>
+        <div class="mt-4 px-2 pb-2">
+          <h3 class="text-lg font-bold">Creando una portada para manga</h3>
+          <p class="mt-1 text-sm leading-relaxed text-neutral-500">Componé páginas completas con viñetas, personajes, fondos de IA y globos de diálogo.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Tech -->
-<section class="border-y border-neutral-200 bg-white py-24">
-  <div class="mx-auto max-w-6xl px-6">
-    <h2 class="text-center text-3xl font-bold">Stack moderno</h2>
-    <div class="mt-12 flex flex-wrap justify-center gap-4">
-      <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700">Electron 33</span>
-      <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700">React 18</span>
-      <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700">TypeScript</span>
-      <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700">Tailwind CSS v4</span>
-      <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700">electron-vite</span>
-      <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700">SVG</span>
-      <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700">Pollinations.ai</span>
-      <span class="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700">Google Fonts</span>
+<!-- Features Grid -->
+<section id="features" class="py-24">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="text-center">
+      <span class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-500">Características</span>
+      <h2 class="mt-3 text-4xl font-black text-ink">Una fábrica de manga completa</h2>
+    </div>
+
+    <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="card-hover rounded-2xl border border-neutral-200/60 bg-white p-6 shadow-sm">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white text-xl shadow-lg shadow-indigo-500/20">▦</div>
+        <h3 class="mt-5 text-base font-bold">Viñetas poligonales</h3>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Dibujo por marquee, división con gutter automático, clip poligonal y modo deformar con 4 vértices libres.</p>
+      </div>
+
+      <div class="card-hover rounded-2xl border border-neutral-200/60 bg-white p-6 shadow-sm">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-violet-700 text-white text-xl shadow-lg shadow-violet-500/20">💬</div>
+        <h3 class="mt-5 text-base font-bold">Globos de diálogo</h3>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-500">4 tipos SVG, cola orientable, 9 fuentes, sombra configurable y estilos de marco para cartelas.</p>
+      </div>
+
+      <div class="card-hover rounded-2xl border border-neutral-200/60 bg-white p-6 shadow-sm">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-amber-700 text-white text-xl shadow-lg shadow-amber-500/20">✨</div>
+        <h3 class="mt-5 text-base font-bold">IA integrada</h3>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Pollinations.ai para fondos generativos. 27 estilos, semillas múltiples y biblioteca reutilizable.</p>
+      </div>
+
+      <div class="card-hover rounded-2xl border border-neutral-200/60 bg-white p-6 shadow-sm">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 text-white text-xl shadow-lg shadow-emerald-500/20">✏️</div>
+        <h3 class="mt-5 text-base font-bold">Dibujo y screentones</h3>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Pluma vectorial 3×3, borrador, 8 timbres de trama con slider de tamaño continuo.</p>
+      </div>
+
+      <div class="card-hover rounded-2xl border border-neutral-200/60 bg-white p-6 shadow-sm">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-rose-500 to-rose-700 text-white text-xl shadow-lg shadow-rose-500/20">💥</div>
+        <h3 class="mt-5 text-base font-bold">Onomatopeyas</h3>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Texto SFX con 3 estilos, rotación, 3 colores y selector de fuente.</p>
+      </div>
+
+      <div class="card-hover rounded-2xl border border-neutral-200/60 bg-white p-6 shadow-sm">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-700 text-white text-xl shadow-lg shadow-cyan-500/20">👤</div>
+        <h3 class="mt-5 text-base font-bold">Personajes</h3>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Constructor paramétrico: cara, ojos, expresión, cabello. Guardado con nombre.</p>
+      </div>
+
+      <div class="card-hover rounded-2xl border border-neutral-200/60 bg-white p-6 shadow-sm">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white text-xl shadow-lg shadow-blue-500/20">📖</div>
+        <h3 class="mt-5 text-base font-bold">Historia</h3>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Premisa, capítulos y escenas con vínculo a páginas. Todo sincronizado.</p>
+      </div>
+
+      <div class="card-hover rounded-2xl border border-neutral-200/60 bg-white p-6 shadow-sm">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-purple-700 text-white text-xl shadow-lg shadow-purple-500/20">💾</div>
+        <h3 class="mt-5 text-base font-bold">Guardado automático</h3>
+        <p class="mt-2 text-sm leading-relaxed text-neutral-500">Nunca perdés trabajo. Autosave cada 600 ms. Formato .ymanga portable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats / Trust -->
+<section class="border-y border-neutral-200 bg-ink py-20">
+  <div class="mx-auto max-w-5xl px-6 text-center">
+    <div class="grid gap-10 sm:grid-cols-3">
+      <div>
+        <div class="text-5xl font-black text-white">0</div>
+        <p class="mt-2 text-sm text-indigo-300">Conocimientos de dibujo requeridos</p>
+      </div>
+      <div>
+        <div class="text-5xl font-black text-white">8</div>
+        <p class="mt-2 text-sm text-indigo-300">Patrones de screentone</p>
+      </div>
+      <div>
+        <div class="text-5xl font-black text-white">27</div>
+        <p class="mt-2 text-sm text-indigo-300">Estilos de IA combinables</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack -->
+<section class="bg-white py-20">
+  <div class="mx-auto max-w-5xl px-6 text-center">
+    <span class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-500">Tecnología</span>
+    <h2 class="mt-3 text-3xl font-black text-ink">Stack moderno y sólido</h2>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <span class="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-semibold text-neutral-700 shadow-sm">⚡ Electron 33</span>
+      <span class="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-semibold text-neutral-700 shadow-sm">⚛️ React 18</span>
+      <span class="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-semibold text-neutral-700 shadow-sm">🔷 TypeScript</span>
+      <span class="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-semibold text-neutral-700 shadow-sm">🎨 Tailwind CSS v4</span>
+      <span class="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-semibold text-neutral-700 shadow-sm">⚡ electron-vite</span>
+      <span class="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-semibold text-neutral-700 shadow-sm">🖼️ SVG</span>
+      <span class="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-semibold text-neutral-700 shadow-sm">🤖 Pollinations.ai</span>
+      <span class="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-semibold text-neutral-700 shadow-sm">🔤 Google Fonts</span>
     </div>
   </div>
 </section>
 
 <!-- Install -->
-<section id="install" class="py-24">
-  <div class="mx-auto max-w-3xl px-6">
-    <h2 class="text-center text-3xl font-bold">Instalación</h2>
-    <p class="mx-auto mt-4 max-w-lg text-center text-neutral-500">Cloná el repo, instalá dependencias y ejecutá en modo desarrollo.</p>
+<section id="install" class="bg-panel py-24">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <span class="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-500">Empezá ahora</span>
+    <h2 class="mt-3 text-4xl font-black text-ink">Instalación en 3 comandos</h2>
 
-    <div class="mt-10 rounded-2xl border border-neutral-300 bg-neutral-900 p-6 font-mono text-sm text-green-300 shadow-lg">
-      <p>git clone https://github.com/jmjauregui/YUSEPE-manga.git</p>
-      <p class="mt-2">cd YUSEPE-manga</p>
-      <p class="mt-2 text-neutral-500"># Node 20 obligatorio</p>
-      <p>nvm use 20</p>
-      <p class="mt-2">npm install</p>
-      <p class="mt-2">npm run dev</p>
+    <div class="mt-12 rounded-2xl border border-neutral-700 bg-[#0d1117] p-8 text-left font-mono text-sm shadow-2xl">
+      <div class="mb-6 flex items-center gap-2">
+        <span class="h-3 w-3 rounded-full bg-red-500"></span>
+        <span class="h-3 w-3 rounded-full bg-amber-500"></span>
+        <span class="h-3 w-3 rounded-full bg-green-500"></span>
+        <span class="ml-3 text-xs text-neutral-500">Terminal</span>
+      </div>
+      <p class="text-green-400">git clone https://github.com/jmjauregui/YUSEPE-manga.git</p>
+      <p class="mt-3 text-green-400">cd YUSEPE-manga</p>
+      <p class="mt-3 text-neutral-500"># Requiere Node 20</p>
+      <p class="text-green-400">nvm use 20</p>
+      <p class="mt-3 text-green-400">npm install</p>
+      <p class="mt-3 text-green-400">npm run dev</p>
+      <p class="mt-6 text-indigo-400"># Abrí la app y empezá tu manga ✨</p>
     </div>
 
-    <div class="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-6 text-sm text-amber-800">
-      <strong>Generación de fondos con IA:</strong> creá un archivo <code class="rounded bg-amber-100 px-1">.env</code> con <code class="rounded bg-amber-100 px-1">APIKEY_pollinations = tu_key</code> para habilitar la integración con Pollinations.ai.
+    <div class="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-6 text-left text-sm text-amber-800">
+      <strong>🤖 Fondos con IA:</strong> creá un archivo <code class="rounded-md bg-amber-100 px-1.5 py-0.5 font-mono text-xs">.env</code> con<br>
+      <code class="rounded-md bg-amber-100 px-1.5 py-0.5 font-mono text-xs mt-1 inline-block">APIKEY_pollinations = tu_api_key</code>
     </div>
   </div>
 </section>
 
 <!-- Footer -->
-<footer class="border-t border-neutral-200 bg-white py-12 text-center text-sm text-neutral-400">
-  <p>YUSEPE manga — open source bajo licencia MIT</p>
-  <p class="mt-1">Hecho para guionistas, no para ilustradores.</p>
+<footer class="bg-ink py-16 text-center">
+  <div class="mx-auto max-w-3xl px-6">
+    <div class="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-xl font-black text-white shadow-lg shadow-indigo-500/25">Y</div>
+    <h3 class="text-xl font-black text-white">YUSEPE manga</h3>
+    <p class="mt-2 text-sm text-neutral-500">Hecho para guionistas, no para ilustradores.</p>
+    <div class="mt-8 flex justify-center gap-6 text-sm text-neutral-500">
+      <a href="https://github.com/jmjauregui/YUSEPE-manga" class="hover:text-white transition">GitHub</a>
+      <a href="#features" class="hover:text-white transition">Features</a>
+      <a href="#install" class="hover:text-white transition">Instalar</a>
+    </div>
+    <p class="mt-10 text-xs text-neutral-700">Open Source — MIT License</p>
+  </div>
 </footer>
 
 </body>
